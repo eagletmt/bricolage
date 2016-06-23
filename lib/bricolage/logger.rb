@@ -4,11 +4,7 @@ require 'logger'
 module Bricolage
   class Logger < ::Logger
     def Logger.default
-      shifting
-    end
-
-    def Logger.shifting(age: 0, size: 1048570)
-      logger = new($stderr, age, size)
+      logger = new($stderr)
       logger.level = $stderr.tty? ? Logger::DEBUG : Logger::INFO
       logger.formatter = -> (sev, time, prog, msg) {
         "#{time}: #{sev}: #{msg}\n"
